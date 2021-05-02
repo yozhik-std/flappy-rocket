@@ -39,12 +39,12 @@ body {
     transform-style: preserve-3d;
 }
 .memory-card.flip {
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 .memory-card:active {
-    transform: scale(0.97);
-    transition: transform 0.2s;
+    -webkit-transform: scale(0.97);
+    -webkit-transition: transform 0.2s;
 }
 
 .front-face, .back-face {
@@ -58,7 +58,7 @@ body {
 }
 
 .front-face {
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 @media (max-width: 1600px){
