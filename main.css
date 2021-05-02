@@ -54,7 +54,7 @@ body {
     position: absolute;
     border-radius: 10px;
     background-color: #424040;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .front-face {
@@ -93,7 +93,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 }
 @media (max-height: 880px){
@@ -120,7 +120,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 }
 @media (max-height: 850px){
@@ -147,7 +147,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 	.title h2{
 		font-size: 36px;
@@ -177,7 +177,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 	.title h2{
 		font-size: 36px;
@@ -207,7 +207,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 	.title h2{
 		font-size: 36px;
@@ -234,7 +234,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 }
 @media (max-height: 650px){
@@ -277,7 +277,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 }
 @media (max-width: 410px){
@@ -301,7 +301,7 @@ body {
 		position: absolute;
 		border-radius: 10px;
 		background-color: #424040;
-		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 }
 
