@@ -1,63 +1,92 @@
-const cards = document.querySelectorAll('.memory-card');
+var cvs = document.getElementById("canvas");
+var ctx = cvs.getContext("2d");
 
-let hasFlippedCard = false;
-let boardLocked = false;
-let firstCard,secondCard;
+var bird = new Image();
+var bg = new Image();
+var fg = new Image();
+var pipeUp = new Image();
+var pipeBottom = new Image();
 
-const flipCard = e => {
-	if (boardLocked) return;
+bird.src = "img/bird.png";
+bg.src = "img/фон.png";
+fg.src = "img/fg.png";
+pipeUp.src = "img/pipeUp.png";
+pipeBottom.src = "img/pipeBottom.png";
 
-    const target = e.target.parentElement;
+// Звуковые файлы
+var fly = new Audio();
+var score_audio = new Audio();
 
-	if (target === firstCard) return;
+fly.src = "audio/fly.mp3";
+score_audio.src = "audio/score.mp3";
 
-    target.classList.add('flip');
+var gap = 90;
 
-	if (!hasFlippedCard) {
-		hasFlippedCard = true;
-		firstCard = target;
-	}
-	else {
-		hasFlippedCard = false;
-		secondCard = target;
+// При нажатии на какую-либо кнопку
+document.addEventListener("keydown", moveUp);
 
-		checkForMatch();
-	}
-};
-
-const checkForMatch = () => {
-	const isEqual = firstCard.dataset.planet === secondCard.dataset.planet;
-	isEqual ? disableCards() : unflipCards();
-		
-};
-
-const disableCards = () => {
-	firstCard.removeEventListener("click", flipCard);
-	secondCard.removeEventListener("click", flipCard);
-};
-
-const unflipCards = () => {
-	boardLocked = true;
-
-	setTimeout(()  => {
-	firstCard.classList.remove('flip');
-	secondCard.classList.remove('flip');
-
-	resetBoard();
-	},1000);
-};
-
-
-const resetBoard = () => {
-	hasFlippedCard = boardLocked = false;
-	firstCard, secondCard = null;
+function moveUp() {
+ yPos -= 25;
+ fly.play();
 }
 
-cards.forEach( card => {
-    card.addEventListener('click', flipCard);
-	const randomIndex = Math.floor(Math.random() * cards.length);
-	card.style.order = randomIndex;
-});
+// Создание блоков
+var pipe = [];
+
+pipe[0] = {
+ x : cvs.width,
+ y : 0
+}
+
+var score = 0;
+// Позиция птички
+var xPos = 10;
+var yPos = 150;
+var grav = 1.5;
+
+function draw() {
+ ctx.drawImage(bg, 0, 0);
+
+ for(var i = 0; i < pipe.length; i++) {
+ ctx.drawImage(pipeUp, pipe[i].x, pipe[i].y);
+ ctx.drawImage(pipeBottom, pipe[i].x, pipe[i].y + pipeUp.height + gap);
+
+ pipe[i].x--;
+
+ if(pipe[i].x == 125) {
+ pipe.push({
+ x : cvs.width,
+ y : Math.floor(Math.random() * pipeUp.height) - pipeUp.height
+ });
+ }
+
+ // Отслеживание прикосновений
+ if(xPos + bird.width >= pipe[i].x
+ && xPos <= pipe[i].x + pipeUp.width
+ && (yPos <= pipe[i].y + pipeUp.height
+ || yPos + bird.height >= pipe[i].y + pipeUp.height + gap) || yPos + bird.height >= cvs.height - fg.height) {
+ location.reload(); // Перезагрузка страницы
+ }
+
+ if(pipe[i].x == 5) {
+ score++;
+ score_audio.play();
+ }
+ }
+
+ ctx.drawImage(fg, 0, cvs.height - fg.height);
+ ctx.drawImage(bird, xPos, yPos);
+
+ yPos += grav;
+
+ ctx.fillStyle = "#000";
+ ctx.font = "24px Verdana";
+ ctx.fillText("Счет: " + score, 10, cvs.height - 20);
+
+ requestAnimationFrame(draw);
+}
+
+pipeBottom.onload = draw;
 
 
 

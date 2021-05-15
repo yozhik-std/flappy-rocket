@@ -19,6 +19,7 @@ body {
 .wrapper {
     height: 68vh;
     display: flex;
+	justify-content: center;
 }
 .memory-game {
     width: 650px;
