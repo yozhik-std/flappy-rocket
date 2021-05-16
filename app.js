@@ -7,18 +7,13 @@ var fg = new Image();
 var pipeUp = new Image();
 var pipeBottom = new Image();
 
-bird.src = "img/bird.png";
+bird.src = "img/raketa_3.png";
 bg.src = "img/фон.png";
-fg.src = "img/fg.png";
+fg.src = "img/Group_1_2.png";
 pipeUp.src = "img/pipeUp.png";
 pipeBottom.src = "img/pipeBottom.png";
 
 // Звуковые файлы
-var fly = new Audio();
-var score_audio = new Audio();
-
-fly.src = "audio/fly.mp3";
-score_audio.src = "audio/score.mp3";
 
 var gap = 90;
 
@@ -27,7 +22,6 @@ document.addEventListener("keydown", moveUp);
 
 function moveUp() {
  yPos -= 25;
- fly.play();
 }
 
 // Создание блоков
@@ -53,7 +47,7 @@ function draw() {
 
  pipe[i].x--;
 
- if(pipe[i].x == 125) {
+ if(pipe[i].x == 700) {
  pipe.push({
  x : cvs.width,
  y : Math.floor(Math.random() * pipeUp.height) - pipeUp.height
@@ -70,7 +64,6 @@ function draw() {
 
  if(pipe[i].x == 5) {
  score++;
- score_audio.play();
  }
  }
 
